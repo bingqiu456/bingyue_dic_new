@@ -10,14 +10,15 @@ from nonebot.adapters.onebot.v11 import GroupMessageEvent
 from . import dic_match
 from nonebot import get_driver
 
+
 async def judge_group(event: GroupMessageEvent):
     return event.group_id in config_group
 
-a = on_message(priority=10, rule=judge_group)
-config_group = get_driver().config.dict().get("start_group",[])
 
+a = on_message(priority=10, rule=judge_group)
+config_group = get_driver().config.dict().get("start_group", [])
 
 
 @a.handle()
-async def _(event: GroupMessageEvent):    
+async def _(event: GroupMessageEvent):
     await a.finish(await dic_match.match_sentence(event, event.get_plaintext()))

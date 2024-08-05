@@ -9,22 +9,22 @@
 class Variable:
     
     @staticmethod
-    def QQ(event):
+    def QQ(event, *args):
         return event.get_user_id()
         
     @staticmethod
-    def bot_qq(event):
+    def bot_qq(event, *args):
         return str(event.self_id)
     
     @staticmethod
-    def id(event):
+    def id(event, *args):
         return str(event.m())
 
     @staticmethod
-    def message_id(event):
+    def message_id(event, *args):
         return str(event.message_id)
 
     @staticmethod
-    def group_id(event):
+    def group_id(event, *args):
         return str(event.group_id)
     
