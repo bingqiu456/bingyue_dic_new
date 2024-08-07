@@ -18,6 +18,9 @@ class api:
     async def get_times(*args):
         return str(int(time.time()))
 
+    @staticmethod
+    async def test_var(*args): # 这里类名要改成你自己设置的 
+        return "测试"
 
 class Variable:
     
@@ -34,7 +37,8 @@ class Variable:
         }
         v = {
            "%主人%":"owner_qq",
-           "%time%":"get_times"
+           "%time%":"get_times",
+           "%test%":"test_var"
         }
         if args[0] in p:
             x = p[args[0]]

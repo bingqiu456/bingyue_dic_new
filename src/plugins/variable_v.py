@@ -9,8 +9,9 @@ from . import dic_match
 
 class api:
 
+
     @staticmethod
-    async def admin(args):
+    async def admin(*args):
         ans = []
         for arg in args:
             if start_dic.date_tree.search(arg):
@@ -49,7 +50,7 @@ class variable:
         }
         v = {
             "$管理员$":["admin",False],
-            "$获取消息$":["get_message_type",True]
+            "$获取消息$":["get_message_type",True],
         }
         n_ = {
             0:False,
@@ -70,9 +71,10 @@ class variable:
         elif args[0] in v:
             api_message = v[args[0]] # 获取到数据 0对应的是类名 1对应是你是否需要提供消息事件
             method = getattr(api, api_message[0]) # 从api class里获取类名信息
+            q = args[1].split()
             if api_message[1]:
-                return await method(event,args) # 附上参数 直接访问
+                return await method(event,*q) # 附上参数 直接访问
             else:
-                return await method(args)
+                return await method(*q)
         else:
             return "error"
