@@ -15,7 +15,7 @@ key_dict = []  # 词库的索引 对应每个功能从文本的第几行到第�
 keybox = []  # 词库的指令
 
 date_tree = date_tree.DataTree()
-owner_dic = get_driver().config.dict().get("onwer_dic", "0")
+owner_dic = str(get_driver().config.dict().get("onwer_dic", "0"))
 admin_dic = get_driver().config.dict().get("admin_dic", [])
 date_tree.add_list(admin_dic)
 

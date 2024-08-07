@@ -6,7 +6,7 @@ https://github.com/bingqiu456
 """
 
 from nonebot import on_message
-from nonebot.adapters.onebot.v11 import GroupMessageEvent
+from nonebot.adapters.onebot.v11 import GroupMessageEvent, Bot
 from . import dic_match
 from nonebot import get_driver
 
@@ -20,5 +20,9 @@ config_group = get_driver().config.dict().get("start_group", [])
 
 
 @a.handle()
-async def _(event: GroupMessageEvent):
-    await a.finish(await dic_match.match_sentence(event, event.get_plaintext()))
+async def _(bot: Bot, event: GroupMessageEvent):
+    v = await dic_match.match_sentence(event, event.get_plaintext(), bot)
+    if not v:
+        await a.finish()
+    else:
+        await a.finish(v)
