@@ -9,10 +9,10 @@ from . import dic_match
 
 class api:
 
-
     @staticmethod
     async def admin(*args):
         ans = []
+       
         for arg in args:
             if start_dic.date_tree.search(arg):
                 ans.append(str(arg))
@@ -25,7 +25,7 @@ class api:
             return str(ans)
     
     @staticmethod
-    async def get_message_type(event,args):
+    async def get_message_type(event,*args):
         a = list(event.get_message())
         i = 0
         target = args[0]
@@ -38,6 +38,7 @@ class api:
                 continue
         return ""
 
+    
 class variable:
 
     @staticmethod
@@ -46,7 +47,10 @@ class variable:
         p = {
             "$禁$":["set_group_ban", "group_id", "user_id", "duration", False],
             "$全体禁言$":["set_group_whole_ban", "group_id", "enable", True],
-            "$改群名$":["set_group_name", "group_id", "group_name", False]
+            "$改群名$":["set_group_name", "group_id", "group_name", False],
+            "$改群名片$":["set_group_card", "group_id", "user_id", "card", False],
+            "$群打卡$":["send_group_sign", "group_id", False],
+            "$踢$":["set_group_kick", "group_id", "user_id", False]
         }
         v = {
             "$管理员$":["admin",False],
