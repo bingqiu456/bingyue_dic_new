@@ -8,7 +8,7 @@ https://github.com/bingqiu456
 from . import start_dic
 from . import load_file
 from . import variable_main
-from . import variable_v
+from . import variable_ver
 from typing import List
 
 
@@ -20,6 +20,7 @@ async def match_sentence(event: any, word: str, bot: any) -> str:
     i_ = start_dic.keybox.index(word)  # 查找词库的索引
     if i_ == -1:
         return ""
+    
     ans = ""  # 初始化匹配的答案
     dic_json = load_file.v  # 词库的json条
     p_start, p_end = start_dic.key_dict[i_][0] + 1, start_dic.key_dict[i_][1]  # 读取初始化的索引和终止索引
@@ -126,5 +127,5 @@ class variable:
         """
         $变量
         """
-        k = await variable_v.variable.__dict__.get("core").__func__(event,s+"$" , temp[:-1])
+        k = await variable_ver.variable.__dict__.get("core").__func__(event,s+"$" , temp[:-1])
         return k
